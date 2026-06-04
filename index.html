@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Divin Gatesi | Architect of the Digital Symphony · Kigali, Rwanda</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700;900&family=Fira+Code:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-base: #0a0c0b;
+            --surface-card: #121614;
+            --surface-card-hover: #181d1a;
+            --primary: #d4a373;
+            --primary-glow: rgba(212, 163, 115, 0.25);
+            --accent-emerald: #1e3629;
+            --accent-gold: #e6b860;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-glow: rgba(212, 163, 115, 0.15);
+            --glass-nav: rgba(10, 12, 11, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Custom Scrollbar for Matrix Feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-emerald); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* 3D Holographic Network Layer */
+        .canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .ambient-glow-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(160px);
+            will-change: transform;
+            opacity: 0.5;
+        }
+        .orb-alpha { width: 800px; height: 800px; top: -200px; left: -200px; background: radial-gradient(circle, rgba(212, 163, 115, 0.08) 0%, transparent 70%); }
+        .orb-beta { width: 900px; height: 900px; bottom: -300px; right: -200px; background: radial-gradient(circle, rgba(30, 54, 41, 0.25) 0%, transparent 70%); }
+
+        .app-container {
+            max-width: 1550px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Executive Command Navigation */
+        .premium-nav {
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            background: var(--glass-nav);
+            border-radius: 1.5rem;
+            padding: 1.2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-glow);
+            position: sticky;
+            top: 30px;
+            z-index: 1000;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-signature {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
+        }
+
+        .nav-links-cluster {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-link-item {
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 0.8rem 1.6rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-link-item.active {
+            background: rgba(212, 163, 115, 0.08);
+            color: var(--primary);
+            border-color: var(--border-glow);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .nav-link-item:hover:not(.active) {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
+        }
+
+        /* System Layout Router */
+        .pages-viewport {
+            position: relative;
+            min-height: 85vh;
+            margin-top: 5rem;
+        }
+
+        .portfolio-page {
+            display: none;
+            opacity: 0;
+            width: 100%;
+            animation: fadeInState 0.6s ease forwards;
+        }
+
+        .portfolio-page.active-page-view {
+            display: block;
+        }
+
+        @keyframes fadeInState {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Sculpted Monolithic Surfaces */
+        .monolith-card {
+            background: var(--surface-card);
+            border-radius: 2rem;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transform-style: preserve-3d;
+            will-change: transform;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            transition: border-color 0.5s, box-shadow 0.5s, background 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .monolith-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, var(--primary-glow), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s;
+            pointer-events: none;
+        }
+
+        .monolith-card:hover {
+            border-color: rgba(212, 163, 115, 0.4);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6), 0 0 40px var(--primary-glow);
+            background: var(--surface-card-hover);
+        }
+        
+        .monolith-card:hover::before { opacity: 1; }
+
+        .layout-grid-balanced {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+
+        /* Language Vector Badges */
+        .vector-token {
+            background: rgba(30, 54, 41, 0.3);
+            padding: 0.8rem 1.8rem;
+            border-radius: 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0.6rem;
+            border: 1px solid rgba(42, 71, 54, 0.8);
+            color: var(--text-main);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .vector-token i { font-size: 1.3rem; color: var(--primary); }
+
+        .vector-token:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--primary);
+            background: rgba(212, 163, 115, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 15px var(--primary-glow);
+        }
+
+        /* Kinetic Text Lyric Containers */
+        .lyric-paragraph-block {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.6rem;
+            line-height: 2;
+            color: #e2e8f0;
+            border-left: 4px solid var(--primary);
+            background: linear-gradient(90deg, rgba(212,163,115,0.05), transparent);
+            padding: 3.5rem 4.5rem;
+            margin: 5rem 0;
+            border-radius: 0 2rem 2rem 0;
+            position: relative;
+        }
+
+        .lyric-paragraph-block::after {
+            content: "”";
+            position: absolute;
+            bottom: -30px;
+            right: 40px;
+            font-size: 8rem;
+            color: rgba(212, 163, 115, 0.08);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        /* Deep Shell Terminal Architecture */
+        .matrix-shell-container {
+            background: #050606;
+            border-radius: 1.8rem;
+            font-family: 'Fira Code', monospace;
+            margin: 4rem 0;
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            box-shadow: 0 60px 120px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 163, 115, 0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .shell-bar-top {
+            background: #0a0c0b;
+            padding: 1.4rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .window-control-node { width: 14px; height: 14px; border-radius: 50%; }
+        .window-control-node.term-close { background: #ff5f56; box-shadow: 0 0 10px rgba(255,95,86,0.5); }
+        .window-control-node.term-min { background: #ffbd2e; box-shadow: 0 0 10px rgba(255,189,46,0.5); }
+        .window-control-node.term-max { background: #27c93f; box-shadow: 0 0 10px rgba(39,201,63,0.5); }
+
+        .shell-body-viewport {
+            padding: 3rem;
+            min-height: 550px;
+            max-height: 650px;
+            overflow-y: auto;
+            color: #a7f3d0;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .shell-io-line { margin-bottom: 1.2rem; text-shadow: 0 0 5px rgba(167, 243, 208, 0.2); }
+        .shell-prompt-symbol { color: var(--primary); font-weight: 700; text-shadow: 0 0 8px var(--primary-glow); }
+
+        #shellInputNode {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            outline: none;
+            flex: 1;
+            width: 80%;
+            caret-color: var(--primary);
+        }
+
+        /* Typewriter HUD */
+        .live-ticker-box {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.4);
+            padding: 1.8rem;
+            border-radius: 1.2rem;
+            border: 1px solid var(--border-glow);
+            color: var(--primary);
+            min-height: 80px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .blinking-cursor { animation: textCursorPulse 1s infinite; font-weight: 900; color: var(--text-main); }
+        @keyframes textCursorPulse { 50% { opacity: 0; } }
+
+        .interactive-action-trigger {
+            background: linear-gradient(135deg, var(--primary), #a67c52);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.4rem 3rem;
+            border-radius: 1.2rem;
+            color: #0a0c0b;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            box-shadow: 0 15px 35px rgba(212, 163, 115, 0.15), inset 0 2px 0 rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .interactive-action-trigger:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(212, 163, 115, 0.3), inset 0 2px 0 rgba(255,255,255,0.5);
+            background: linear-gradient(135deg, #e6b860, var(--primary));
+        }
+
+        /* Cinematic Portrait Wrapper */
+        .profile-media-anchor {
+            background: linear-gradient(145deg, #181d1a, #0a0c0b);
+            border-radius: 2.5rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.02);
+            position: relative;
+        }
+        
+        .profile-media-anchor::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 1px solid var(--primary-glow);
+            border-radius: 3rem;
+            z-index: -1;
+            animation: pulseBorder 4s infinite alternate;
+        }
+
+        @keyframes pulseBorder {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.02); opacity: 0.8; }
+        }
+
+        .profile-media-anchor img {
+            width: 100%;
+            height: auto;
+            border-radius: 1.5rem;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+            display: block;
+            filter: grayscale(30%) contrast(120%) brightness(0.9);
+            transition: filter 0.5s;
+        }
+        
+        .profile-media-anchor:hover img {
+            filter: grayscale(0%) contrast(110%) brightness(1);
+        }
+
+        .sub-detailed-paragraph {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .sub-detailed-paragraph strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Matrix Progress Bars */
+        .skill-matrix-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .skill-track {
+            background: rgba(0,0,0,0.4);
+            border-radius: 10px;
+            height: 12px;
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--primary), var(--accent-gold));
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: scanline 2s infinite linear;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 10rem;
+            padding: 5rem 2rem;
+            border-top: 1px solid var(--border-glow);
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            background: linear-gradient(to top, rgba(10,12,11,1), transparent);
+        }
+
+        @media(max-width: 1200px) {
+            .layout-grid-balanced { grid-template-columns: 1fr; }
+            .premium-nav { flex-direction: column; gap: 2rem; padding: 2rem; border-radius: 2rem; }
+            .nav-links-cluster { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="canvas-background">
+        <canvas id="structuralGlobeCanvas"></canvas>
+    </div>
+    
+    <div class="ambient-glow-orbs">
+        <div class="glow-orb orb-alpha" id="orbAlpha"></div>
+        <div class="glow-orb orb-beta" id="orbBeta"></div>
+    </div>
+
+    <div class="app-container">
+        
+        <div class="premium-nav">
+            <div class="brand-signature">
+                 GATESI 
+            </div>
+            <div class="nav-links-cluster">
+                <button class="nav-link-item active" data-target="core"><i class="fa-solid fa-microchip"></i>Home</button>
+                <button class="nav-link-item" data-target="chronicles"><i class="fa-solid fa-book-journal-whills"></i> About me</button>
+                <button class="nav-link-item" data-target="matrix"><i class="fa-solid fa-cubes-stacked"></i> Skills</button>
+                <button class="nav-link-item" data-target="deployments"><i class="fa-solid fa-server"></i> Live projects</button>
+                <button class="nav-link-item" data-target="shell"><i class="fa-solid fa-terminal"></i> Command Shell</button>
+                <button class="nav-link-item" data-target="handshake"><i class="fa-solid fa-satellite-dish"></i> contact us</button>
+            </div>
+        </div>
+
+        <div class="pages-viewport">
+            
+            <div id="core-page" class="portfolio-page active-page-view">
+                <div class="layout-grid-balanced" style="align-items: center;">
+                    <div>
+                        <span class="vector-token"><i class="fa-solid fa-location-crosshairs"></i> Geo-Coordinates: 1.9441° S, 30.0619° E · Kigali Nexus</span>
+                        
+                        <h1 style="font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1.05; font-weight: 900; margin: 2rem 0; color: #ffffff; text-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                            Divin Gatesi<br>
+                            <span style="font-size: 2.2rem; font-family:'Cinzel', serif; font-weight: 400; color: var(--primary); letter-spacing: 3px; display: inline-block; margin-top: 15px;">Architect of the Digital Symphony</span>
+                        </h1>
+                        
+                        <div class="live-ticker-box" id="tickerText"></div>
+                        
+                        <p class="sub-detailed-paragraph">
+                            Operating at the exact intersection of <strong>human cognitive behavioral patterns</strong> and <strong>declarative digital systems</strong>, I construct web architectures that are both mathematically rigorous and aesthetically profound. Based in the rapidly accelerating technological crucible of Kigali, Rwanda, I engineer production-grade client environments. 
+                        </p>
+                        
+                        <p class="sub-detailed-paragraph">
+                            My foundational methodology treats code not merely as functional instruction, but as structural poetry. By weaving <strong>HTML5 semantics</strong>, advanced <strong>CSS3 topological grids</strong>, modular <strong>Tailwind utility compilers</strong>, and highly reactive <strong>Vue.js state-management loops</strong>, I forge interfaces that are completely devoid of latency and visually immaculate. Every framework implementation is scrutinized for memory efficiency, optimized Document Object Model processing, and unyielding scalability.
+                        </p>
+
+                        <div style="margin: 3.5rem 0;">
+                            <button id="jumpToDeploymentsBtn" class="interactive-action-trigger">
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i> Initialize Production Environments
+                            </button>
+                        </div>
+
+                        <div class="token-container-row" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <span class="vector-token"><i class="devicon-html5-plain"></i> Deep DOM Parsing</span>
+                            <span class="vector-token"><i class="devicon-css3-plain"></i> Kinetic Layouts</span>
+                            <span class="vector-token"><i class="devicon-tailwindcss-original"></i> Utility Matrices</span>
+                            <span class="vector-token"><i class="devicon-javascript-plain"></i> Object Prototyping</span>
+                            <span class="vector-token"><i class="devicon-vuejs-plain"></i> Reactive Trees</span>
+                            <span class="vector-token"><i class="devicon-typescript-plain"></i> Strict Typings</span>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-wrapper-box" style="padding-left: 2rem;">
+                        <div class="profile-media-anchor surface-tilt-target">
+                            <img src="i.png" alt="Divin Gatesi Biological Portrayal" onerror="this.src='i.png'">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="monolith-card surface-tilt-target" style="margin-top: 6rem;">
+                    <h3 style="font-family: 'Cinzel', serif; margin-bottom: 2rem; color: #ffffff; letter-spacing: 2px; font-size: 1.8rem;">
+                        <i class="fa-brands fa-github"></i> Global Source-Code Repository Metrics · Cluster: @divin-crypto
+                    </h3>
+                    <p class="sub-detailed-paragraph" style="max-width: 900px;">
+                        My digital laboratory translates to observable, aggressively tracked production infrastructure. Utilizing strict, atomic version-control workflows and deeply isolated micro-repositories, I preserve a pristine historical ledger of state mutations across an expansive array of computational experiments and open-source contributions.
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 3.5rem; font-weight: 600;">
+                        <div style="border-left: 4px solid var(--primary); padding-left: 1.5rem; background: linear-gradient(90deg, rgba(212,163,115,0.05), transparent); padding: 1.5rem; border-radius: 0 1rem 1rem 0;">
+                            <span style="color: var(--primary); font-size: 2.5rem; display:block; font-family: 'Cinzel', serif;">19</span> 
+                            <span style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Active Repositories</span>
+                        </div>
+                        <div style="border-left: 4px solid var(--accent-gold); padding-left: 1.5rem; background: linear-gradient(90deg, rgba(230,184,96,0.05), transparent); padding: 1.5rem; border-radius: 0 1rem 1rem 0;">
+                            <span style="color: var(--accent-gold); font-size: 2.5rem; display:block; font-family: 'Cinzel', serif;">138</span> 
+                            <span style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Algorithmic Stars</span>
+                        </div>
+                        <div style="border-left: 4px solid #10b981; padding-left: 1.5rem; background: linear-gradient(90deg, rgba(16,185,129,0.05), transparent); padding: 1.5rem; border-radius: 0 1rem 1rem 0;">
+                            <span style="color: #10b981; font-size: 2.5rem; display:block; font-family: 'Cinzel', serif;">14</span> 
+                            <span style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Engineering Alliances</span>
+                        </div>
+                        <div style="border-left: 4px solid var(--primary); padding-left: 1.5rem; background: linear-gradient(90deg, rgba(212,163,115,0.05), transparent); padding: 1.5rem; border-radius: 0 1rem 1rem 0;">
+                            <span style="color: var(--primary); font-size: 2.5rem; display:block; font-family: 'Cinzel', serif;">480+</span> 
+                            <span style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Cryptographic Commits</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lyric-paragraph-block">
+                    "Programs must be authored for humans to read, and only incidentally for machines to execute. The vast, mountainous topography of East Africa dictates the boundless scope of my structural horizons; pure, unadulterated abstraction clarifies my digital vision."
+                </div>
+            </div>
+
+            <div id="chronicles-page" class="portfolio-page">
+                <div class="monolith-card surface-tilt-target">
+                    <h2 style="font-family:'Cinzel', serif; color: #ffffff; margin-bottom: 2rem; font-size: 2.2rem;"><i class="fa-solid fa-building-columns"></i> Institutional Synthesis & Academic Foundations</h2>
+                    <p class="sub-detailed-paragraph">
+                        My execution capabilities are not mere instinct; they are meticulously calibrated methodologies derived from brutal institutional checkpoints, continuous academic pressure, and verified engineering paradigms.
+                    </p>
+                    <div class="layout-grid-balanced" style="margin-top: 3rem; gap: 3rem;">
+                        <div style="background: rgba(0,0,0,0.2); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.05);">
+                            <h3 style="font-family:'Playfair Display', serif; font-size:1.8rem; color: var(--primary); margin-bottom: 1.5rem;">🎓 Elite Honors Synthesis Record</h3>
+                            <p class="sub-detailed-paragraph">
+                                <strong>Software Engineering Paradigm (First Class)</strong> — Immersed in the rigorous environment of the African Leadership University (ALU), Kigali Node. I maintained absolute peak performance metrics across all evaluation criteria. My core specializations involved mapping asynchronous runtime environments, designing fault-tolerant cross-platform architectures, and engineering hyper-optimized data serialization frameworks.
+                            </p>
+                            <span class="vector-token" style="margin-top: 1rem;"><i class="fa-solid fa-award"></i> System Engineering Valedictorian Circle</span>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.05);">
+                            <h3 style="font-family:'Playfair Display', serif; font-size:1.8rem; color: var(--primary); margin-bottom: 1.5rem;">🌱 Regional Technology Command Node</h3>
+                            <p class="sub-detailed-paragraph">
+                                Beyond autonomous programming, I operate structural mentorship pipelines specifically formulated to condition rising technical talent within the Kigali innovation grid. Functioning as a high-level developer relations asset, I actively scale human cognitive frameworks alongside software deployments, translating complex backend logic into accessible interface tutorials.
+                            </p>
+                            <span class="vector-token" style="margin-top: 1rem;"><i class="fa-solid fa-users-gear"></i> 25+ Junior Engineers Bootstrapped via kLab</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layout-grid-balanced">
+                    <div class="monolith-card surface-tilt-target">
+                        <h3 style="font-family: 'Cinzel', serif; margin-bottom: 2rem; color: #ffffff; font-size: 1.8rem;"><i class="fa-solid fa-medal"></i> Verified Vector Milestones</h3>
+                        <p class="sub-detailed-paragraph">Undeniable metrics established through high-stakes competitive engineering hackathons and continuous production deployments.</p>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.5rem; color: var(--text-main); font-size: 1.1rem;">
+                            <li style="display: flex; gap: 15px; align-items: flex-start;">
+                                <i class="fa-solid fa-shield-check" style="color: var(--primary); margin-top: 5px; font-size: 1.3rem;"></i> 
+                                <span><strong>Apex Core Developer Award</strong> — ALU CodeFest Challenge. Architected a predictive, real-time Agricultural Asset Matrix Dashboard under severe temporal constraints.</span>
+                            </li>
+                            <li style="display: flex; gap: 15px; align-items: flex-start;">
+                                <i class="fa-solid fa-shield-check" style="color: var(--primary); margin-top: 5px; font-size: 1.3rem;"></i> 
+                                <span><strong>Chief Architect Parameter</strong> — "Kigali Standard UI Components." Engineered an open-source, distributed resource tool for rapid front-end bootstrapping.</span>
+                            </li>
+                            <li style="display: flex; gap: 15px; align-items: flex-start;">
+                                <i class="fa-solid fa-shield-check" style="color: var(--primary); margin-top: 5px; font-size: 1.3rem;"></i> 
+                                <span><strong>Keynote Technical Synthesizer</strong> — Directed an extensive panel on Interface Performance Layout Optimization at the Rwanda Coding Academy.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="monolith-card surface-tilt-target" style="display: flex; flex-direction: column; justify-content: center; background: radial-gradient(circle at right bottom, rgba(212,163,115,0.1), transparent);">
+                        <i class="fa-solid fa-quote-left" style="font-size: 4rem; color: rgba(255,255,255,0.05); margin-bottom: 2rem;"></i>
+                        <h3 style="font-family:'Playfair Display', serif; font-style: italic; font-size: 2.2rem; color: #ffffff; line-height: 1.5; margin-bottom: 2rem;">
+                            "The steep, undulating topography of Rwanda demands deep, physical endurance; structural programming requires identical logical stamina."
+                        </h3>
+                        <p style="color: var(--primary); font-weight: 700; font-family: 'Fira Code', monospace; letter-spacing: 2px;">- ARCHITECTURAL LEDGER, 2026</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="matrix-page" class="portfolio-page">
+                <div class="monolith-card surface-tilt-target">
+                    <h2 style="font-family:'Cinzel', serif; color: #ffffff; margin-bottom: 1.5rem; font-size: 2.4rem;"><i class="fa-solid fa-microchip"></i> Granular Parameter Profiles</h2>
+                    <p class="sub-detailed-paragraph" style="max-width: 900px;">
+                        A strict quantitative mapping of my compiled knowledge matrices. This index represents thousands of hours of deep syntax immersion, algorithmic debugging, and functional system deployment across volatile network states.
+                    </p>
+                    
+                    <div class="skill-matrix-container">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:1rem; font-family:'Fira Code', monospace; font-size: 1.1rem;">
+                                <span style="color: #ffffff;"><i class="devicon-vuejs-plain" style="color: #41b883; margin-right: 12px;"></i> Vue.js 3 Architecture (Composition API, Pinia Stores, Vue Router)</span>
+                                <span style="color: var(--primary);">89% Synthesized</span>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Engineered complex virtual DOM rendering trees. Mastered state encapsulation techniques to prevent memory leakage across highly reactive, single-page application lifecycles.</p>
+                            <div class="skill-track">
+                                <div class="skill-fill" style="width: 89%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:1rem; font-family:'Fira Code', monospace; font-size: 1.1rem;">
+                                <span style="color: #ffffff;"><i class="devicon-typescript-plain" style="color: #3178c6; margin-right: 12px;"></i> JavaScript ES6+ / TypeScript Deep Typing Models</span>
+                                <span style="color: var(--primary);">91% Synthesized</span>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Fluency in prototypal inheritance, closure mapping, and asynchronous Promise execution. Implementing strict generic typings to mathematically guarantee interface structural integrity before runtime compilation.</p>
+                            <div class="skill-track">
+                                <div class="skill-fill" style="width: 91%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:1rem; font-family:'Fira Code', monospace; font-size: 1.1rem;">
+                                <span style="color: #ffffff;"><i class="devicon-tailwindcss-original" style="color: #38bdf8; margin-right: 12px;"></i> Tailwind CSS Utility Compilers & JIT Paradigms</span>
+                                <span style="color: var(--primary);">94% Synthesized</span>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Complete domination over utility-first styling. Building reusable token layers, extending configuration matrices, and deploying responsive flex/grid layouts that adapt flawlessly across arbitrary viewport dimensions.</p>
+                            <div class="skill-track">
+                                <div class="skill-fill" style="width: 94%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:1rem; font-family:'Fira Code', monospace; font-size: 1.1rem;">
+                                <span style="color: #ffffff;"><i class="devicon-html5-plain" style="color: #e34f26; margin-right: 12px;"></i> Kinematic Animation Engines (GSAP, WebGL, HTML5 Canvas)</span>
+                                <span style="color: var(--primary);">86% Synthesized</span>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Calculating complex interpolation curves for UI elements. Utilizing requestAnimationFrame loops to manipulate standalone vector graphics at 60FPS without blocking the main browser execution thread.</p>
+                            <div class="skill-track">
+                                <div class="skill-fill" style="width: 86%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deployments-page" class="portfolio-page">
+                <div class="layout-grid-balanced">
+                    <div class="monolith-card surface-tilt-target" style="display: flex; flex-direction: column;">
+                        <div style="background: rgba(0,0,0,0.3); border-radius: 1rem; padding: 1rem; width: max-content; margin-bottom: 2rem;">
+                            <i class="fa-solid fa-satellite-dish" style="font-size: 3rem; color: var(--primary);"></i>
+                        </div>
+                        <h3 style="font-family:'Playfair Display', serif; font-size:2.2rem; color: #ffffff; margin-bottom: 1rem;">🌍 Tembera Z2AI Protocol</h3>
+                        <p class="sub-detailed-paragraph" style="flex-grow: 1;">
+                            An aggressive production architecture deploying Vue 3 rendering trees mapped against heavily performance-tuned Tailwind structural stylesheets. Engineered specifically to interface with physical geographical coordinates, processing massive telemetry datasets onto interactive, high-framerate map layers. 
+                            <br><br>
+                            The platform manages complex algorithmic routing matrices, permitting the rapid and unbroken streaming of mapping datasets even over volatile, high-latency cellular bands frequently encountered in deep rural African environments.
+                        </p>
+                        <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                            <a href="https://tembera-z2ai.onrender.com" target="_blank" class="interactive-action-trigger" style="width: 100%; justify-content: center;">
+                                <i class="fa-solid fa-bolt"></i> Penetrate Live Cluster Node
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="monolith-card surface-tilt-target" style="display: flex; flex-direction: column;">
+                        <div style="background: rgba(0,0,0,0.3); border-radius: 1rem; padding: 1rem; width: max-content; margin-bottom: 2rem;">
+                            <i class="fa-solid fa-leaf" style="font-size: 3rem; color: #10b981;"></i>
+                        </div>
+                        <h3 style="font-family:'Playfair Display', serif; font-size:2.2rem; color: #ffffff; margin-bottom: 1rem;">🌱 Kigali Atmospheric Index</h3>
+                        <p class="sub-detailed-paragraph" style="flex-grow: 1;">
+                            An uncompromising environmental parameter processing framework. It executes standalone client-side tracking state mechanisms via complex reactive architecture diagrams. Developed explicitly to chart, calculate, and render dense air index metrics, it utilizes heavily structured layout methodologies to serve crucial telemetry to regional climate research groups cleanly.
+                            <br><br>
+                            The framework implements custom stream-parsing layers designed to handle chaotic, real-time sensor array outputs without ever degrading the primary application thread or causing visual stutter.
+                        </p>
+                        <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                            <span class="vector-token" style="margin: 0; width: 100%; justify-content: center; padding: 1.4rem; font-size: 1rem;">
+                                <i class="fa-brands fa-github-alt"></i> Access Core: divin-crypto/green-index
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="monolith-card surface-tilt-target" style="display: flex; flex-direction: column; grid-column: 1 / -1; background: linear-gradient(135deg, rgba(18,22,20,1) 0%, rgba(30,54,41,0.2) 100%);">
+                        <div style="display: flex; align-items: flex-start; gap: 3rem; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 300px;">
+                                <div style="background: rgba(0,0,0,0.3); border-radius: 1rem; padding: 1rem; width: max-content; margin-bottom: 2rem;">
+                                    <i class="fa-solid fa-network-wired" style="font-size: 3rem; color: var(--accent-gold);"></i>
+                                </div>
+                                <h3 style="font-family:'Playfair Display', serif; font-size:2.2rem; color: #ffffff; margin-bottom: 1rem;">⚡ Nexus Protocol Visualizer</h3>
+                                <p class="sub-detailed-paragraph">
+                                    A distributed ledger visualization engine constructed purely from JavaScript ES6 module systems and raw Canvas API calls. Engineered to demystify complex cryptographic block transfers by converting raw alphanumeric transaction data into a glowing, kinetic, 3D interactive mesh. 
+                                </p>
+                                <p class="sub-detailed-paragraph">
+                                    Features dynamic node generation, spatial physics algorithms (bounding and collision), and a completely custom event-listener loop that tracks user interaction across thousands of rendered elements flawlessly.
+                                </p>
+                                <div style="margin-top: 2.5rem;">
+                                    <span class="vector-token" style="margin-left: 0;"><i class="fa-solid fa-lock"></i> Architecture: Canvas API</span>
+                                    <span class="vector-token"><i class="fa-solid fa-code"></i> Physics Logic Stream</span>
+                                </div>
+                            </div>
+                            <div style="flex: 1; min-width: 300px; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 3rem; border: 1px solid rgba(255,255,255,0.05);">
+                                <i class="fa-solid fa-cubes" style="font-size: 10rem; color: rgba(255,255,255,0.05);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="shell-page" class="portfolio-page">
+                <p class="sub-detailed-paragraph" style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                    Bypass graphical interfaces. Communicate directly with the logic controllers via the simulated deep command shell. Input recognized parameters to extract localized architectural files.
+                </p>
+                <div class="matrix-shell-container">
+                    <div class="shell-bar-top">
+                        <div class="window-control-node term-close"></div>
+                        <div class="window-control-node term-min"></div>
+                        <div class="window-control-node term-max"></div>
+                        <span style="font-size: 0.9rem; color: var(--text-muted); font-family:'Fira Code', monospace; margin-left: 15px; letter-spacing: 1px;">root@divin-gatesi-mainframe:~#</span>
+                    </div>
+                    <div class="shell-body-viewport" id="shellBodyArea">
+                        <div class="shell-io-line" style="color: var(--primary);">> INITIALIZING DEEP SYSTEM DIAGNOSTICS...</div>
+                        <div class="shell-io-line">> CPU CLUSTER: NOMINAL. MEMORY HEAP: ALLOCATED. NETWORK: SECURE.</div>
+                        <div class="shell-io-line">> ALL VIRTUAL ENVIRONMENTS SYNCHRONIZED AND READY FOR EXECUTION.</div>
+                        <div class="shell-io-line" style="margin-top: 2rem;">$ Query parameter string <span style="color:var(--accent-gold); font-weight:bold;">'help'</span> to explore active infrastructure databases and commands.</div>
+                        <div class="shell-io-line" style="margin-top: 2.5rem; display: flex; align-items: center; gap: 15px;">
+                            <span class="shell-prompt-symbol">gatesi-core:~$</span>
+                            <input type="text" id="shellInputNode" autocomplete="off" autofocus>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="handshake-page" class="portfolio-page">
+                <div class="layout-grid-balanced">
+                    <div class="monolith-card surface-tilt-target">
+                        <h3 style="font-family:'Cinzel', serif; color: #ffffff; margin-bottom: 2rem; font-size: 2rem;"><i class="fa-solid fa-satellite"></i> Establish Secure Uplink</h3>
+                        <p class="sub-detailed-paragraph">
+                            Open direct communication channels for high-level technical architectural advisory contracts, complex prototype synthesis pipelines, or comprehensive enterprise frontend infrastructure implementations.
+                        </p>
+                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 1rem; border-left: 4px solid var(--primary); margin: 3rem 0;">
+                            <p style="font-family:'Fira Code', monospace; font-size: 1.15rem; line-height: 2.5; color: #ffffff; margin: 0;">
+                                <i class="fa-brands fa-github" style="color: var(--primary); margin-right: 20px; font-size: 1.4rem;"></i> github.com/divin-crypto<br>
+                                <i class="fa-solid fa-at" style="color: var(--primary); margin-right: 20px; font-size: 1.4rem;"></i> gatesidivin8@gmail.com<br>
+                                <i class="fa-brands fa-linkedin" style="color: var(--primary); margin-right: 20px; font-size: 1.4rem;"></i> linkedin.com/in/divin-gatesi
+                            </p>
+                        </div>
+                        <button id="copyRoutingTokenBtn" class="interactive-action-trigger" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-fingerprint"></i> Capture Cryptographic Routing ID
+                        </button>
+                    </div>
+                    
+                    <div class="monolith-card surface-tilt-target" style="display: flex; flex-direction: column; justify-content: center;">
+                        <h3 style="font-family:'Cinzel', serif; color: #ffffff; margin-bottom: 2rem; font-size: 2rem;"><i class="fa-solid fa-globe"></i> Global Deployment Strategy</h3>
+                        <p class="sub-detailed-paragraph">
+                            Operating from Rwanda, I provide elite technical integration consultancies globally. I command modern, highly secure remote operational pipelines to ship robust, immaculately clean client layer configurations into massive, distributed microservice clusters across any timezone.
+                        </p>
+                        <p class="sub-detailed-paragraph">
+                            My deployment mechanisms utilize atomic delivery structures, guaranteeing cross-platform consistency.
+                        </p>
+                        <div class="vector-token" style="margin-top: 2rem; padding: 1.2rem 2rem; font-size: 1.2rem;">
+                            <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1.5rem;"></i> Direct Line: +250 788 123 456
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <i class="fa-solid fa-terminal" style="color: var(--primary); margin-right: 10px;"></i> Divin Gatesi · Architectural Systems Synthesizer · Engine Iteration V.2026.06 · Kigali, Rwanda Core
+        </footer>
+    </div>
+
+    <script>
+        // High-Definition Structural Mesh Network Canvas Engine
+        const structuralCanvas = document.getElementById('structuralGlobeCanvas');
+        const canvasCtx = structuralCanvas.getContext('2d');
+        let nodeMatrix = [];
+        const absolutePointsVolume = 110; // Optimized for mesh connection logic
+
+        function adaptCanvasBoundaries() {
+            structuralCanvas.width = window.innerWidth;
+            structuralCanvas.height = window.innerHeight;
+            compilePointsSphericalLayout();
+        }
+
+        function compilePointsSphericalLayout() {
+            nodeMatrix = [];
+            for (let i = 0; i < absolutePointsVolume; i++) {
+                let numericalCosTheta = Math.acos(Math.random() * 2 - 1);
+                let numericalPhi = Math.random() * Math.PI * 2;
+                nodeMatrix.push({
+                    x: Math.sin(numericalCosTheta) * Math.cos(numericalPhi),
+                    y: Math.sin(numericalCosTheta) * Math.sin(numericalPhi),
+                    z: Math.cos(numericalCosTheta)
+                });
+            }
+        }
+
+        let globalSpreadingAngleY = 0;
+        let globalSpreadingAngleX = 0.001;
+
+        function renderGlobeTickLoop() {
+            canvasCtx.clearRect(0, 0, structuralCanvas.width, structuralCanvas.height);
+            
+            let structuralScaleFactor = Math.min(structuralCanvas.width, structuralCanvas.height) * 0.35;
+            let canvasTargetCenterX = structuralCanvas.width * 0.85;
+            let canvasTargetCenterY = structuralCanvas.height * 0.45;
+
+            if (window.innerWidth < 1200) {
+                canvasTargetCenterX = structuralCanvas.width * 0.5;
+                canvasTargetCenterY = structuralCanvas.height * 0.8;
+                structuralScaleFactor = Math.min(structuralCanvas.width, structuralCanvas.height) * 0.4;
+            }
+
+            globalSpreadingAngleY += 0.0015;
+            globalSpreadingAngleX += 0.0005;
+
+            // Pre-calculate projected positions for all nodes
+            let projectedNodes = [];
+
+            nodeMatrix.forEach(pt => {
+                // Dual-axis rotation matrix
+                let rotY_x = pt.x * Math.cos(globalSpreadingAngleY) - pt.z * Math.sin(globalSpreadingAngleY);
+                let rotY_z = pt.x * Math.sin(globalSpreadingAngleY) + pt.z * Math.cos(globalSpreadingAngleY);
+                
+                let rotX_y = pt.y * Math.cos(globalSpreadingAngleX) - rotY_z * Math.sin(globalSpreadingAngleX);
+                let final_z = pt.y * Math.sin(globalSpreadingAngleX) + rotY_z * Math.cos(globalSpreadingAngleX);
+                
+                let coordinatePerspective = 3 / (3 + final_z);
+                let pointRenderDimensionsX = canvasTargetCenterX + rotY_x * structuralScaleFactor * coordinatePerspective;
+                let pointRenderDimensionsY = canvasTargetCenterY + rotX_y * structuralScaleFactor * coordinatePerspective;
+
+                projectedNodes.push({
+                    x: pointRenderDimensionsX,
+                    y: pointRenderDimensionsY,
+                    z: final_z,
+                    scale: coordinatePerspective
+                });
+            });
+
+            // Render Interconnecting Mesh Lines (O(N^2) complexity, kept N low)
+            canvasCtx.lineWidth = 0.5;
+            for (let i = 0; i < projectedNodes.length; i++) {
+                for (let j = i + 1; j < projectedNodes.length; j++) {
+                    let dx = projectedNodes[i].x - projectedNodes[j].x;
+                    let dy = projectedNodes[i].y - projectedNodes[j].y;
+                    let distanceSquared = dx*dx + dy*dy;
+
+                    // Draw line if points are close in 2D projected space and front-facing
+                    if (distanceSquared < 18000 && projectedNodes[i].z < 1 && projectedNodes[j].z < 1) {
+                        let opacity = 1 - (distanceSquared / 18000);
+                        canvasCtx.strokeStyle = `rgba(214, 184, 96, ${opacity * 0.25})`;
+                        canvasCtx.beginPath();
+                        canvasCtx.moveTo(projectedNodes[i].x, projectedNodes[i].y);
+                        canvasCtx.lineTo(projectedNodes[j].x, projectedNodes[j].y);
+                        canvasCtx.stroke();
+                    }
+                }
+            }
+
+            // Render Nodes
+            projectedNodes.forEach(pt => {
+                let calculatedDensityAlpha = (pt.scale - 0.5) * 0.6;
+                if(calculatedDensityAlpha < 0.05) calculatedDensityAlpha = 0.05;
+                
+                canvasCtx.fillStyle = `rgba(212, 163, 115, ${calculatedDensityAlpha})`;
+                canvasCtx.beginPath();
+                canvasCtx.arc(pt.x, pt.y, 2.5 * pt.scale, 0, Math.PI * 2);
+                canvasCtx.fill();
+            });
+
+            requestAnimationFrame(renderGlobeTickLoop);
+        }
+
+        window.addEventListener('resize', adaptCanvasBoundaries);
+        adaptCanvasBoundaries();
+        renderGlobeTickLoop();
+
+        // Complex Isometric Deflection Engine
+        const componentsToTilt = document.querySelectorAll('.surface-tilt-target');
+        componentsToTilt.forEach(cardUnit => {
+            cardUnit.addEventListener('mousemove', (moveEvent) => {
+                const physicalBounds = cardUnit.getBoundingClientRect();
+                const offsetPositionX = moveEvent.clientX - physicalBounds.left;
+                const offsetPositionY = moveEvent.clientY - physicalBounds.top;
+                
+                const frameCenterX = physicalBounds.width / 2;
+                const frameCenterY = physicalBounds.height / 2;
+                
+                const angularCalculationX = (frameCenterY - offsetPositionY) / 25;
+                const angularCalculationY = (offsetPositionX - frameCenterX) / 25;
+
+                gsap.to(cardUnit, {
+                    rotationX: angularCalculationX,
+                    rotationY: angularCalculationY,
+                    transformPerspective: 1500,
+                    scale: 1.02,
+                    duration: 0.4,
+                    ease: 'power2.out'
+                });
+            });
+
+            cardUnit.addEventListener('mouseleave', () => {
+                gsap.to(cardUnit, { rotationX: 0, rotationY: 0, scale: 1, duration: 0.7, ease: 'power3.out' });
+            });
+        });
+
+        // Ambient Lighting System Tracking
+        document.addEventListener('mousemove', (mouseCoordinates) => {
+            const calculatedNormalizedX = (mouseCoordinates.clientX / window.innerWidth) - 0.5;
+            const calculatedNormalizedY = (mouseCoordinates.clientY / window.innerHeight) - 0.5;
+
+            gsap.to('#orbAlpha', { x: calculatedNormalizedX * 100, y: calculatedNormalizedY * 100, duration: 2, ease: 'power2.out' });
+            gsap.to('#orbBeta', { x: calculatedNormalizedX * -150, y: calculatedNormalizedY * -150, duration: 2.5, ease: 'power2.out' });
+        });
+
+        // Modular Output Script Streamer Loops
+        const scriptPoetryArray = [
+            ">> runtime_initialization: console.log('Matrix Core Engine Activated.');",
+            ">> architectural_intent: 'Synthesize raw logical blueprints into deep graphical views';",
+            ">> layout_metric: HTML5 Structure + JS V8 Logic + Compiling Tailwind Streams;",
+            ">> philosophical_state: 'Code is poetry constrained by the laws of physics.';",
+            ">> optimization_constant: Pushing requestAnimationFrame limits to zero-latency drops."
+        ];
+        let runningStringIndex = 0, scanningCharacterIndex = 0, stateBacktrackFlag = false;
+        const liveTickerContainer = document.getElementById('tickerText');
+
+        function processLiveTickerEngine() {
+            if (!liveTickerContainer) return;
+            const processingTargetString = scriptPoetryArray[runningStringIndex];
+            
+            if (stateBacktrackFlag) {
+                liveTickerContainer.innerHTML = processingTargetString.substring(0, scanningCharacterIndex - 1) + '<span class="blinking-cursor">█</span>';
+                scanningCharacterIndex--;
+                if (scanningCharacterIndex === 0) {
+                    stateBacktrackFlag = false;
+                    runningStringIndex = (runningStringIndex + 1) % scriptPoetryArray.length;
+                }
+            } else {
+                liveTickerContainer.innerHTML = processingTargetString.substring(0, scanningCharacterIndex + 1) + '<span class="blinking-cursor">█</span>';
+                scanningCharacterIndex++;
+                if (scanningCharacterIndex === processingTargetString.length) {
+                    stateBacktrackFlag = true;
+                    setTimeout(processLiveTickerEngine, 4000); // Pause at end of sentence
+                    return;
+                }
+            }
+            setTimeout(processLiveTickerEngine, stateBacktrackFlag ? 10 : 35);
+        }
+        processLiveTickerEngine();
+
+        // Advanced Coordinated Transition Layout Router
+        const layoutViewsMapping = {
+            core: document.getElementById('core-page'),
+            chronicles: document.getElementById('chronicles-page'),
+            matrix: document.getElementById('matrix-page'),
+            deployments: document.getElementById('deployments-page'),
+            shell: document.getElementById('shell-page'),
+            handshake: document.getElementById('handshake-page')
+        };
+        const interactionAnchorPills = document.querySelectorAll('.nav-link-item');
+
+        function processViewSwitchState(targetViewKey) {
+            const outgoingViewNode = document.querySelector('.portfolio-page.active-page-view');
+            const incomingViewNode = layoutViewsMapping[targetViewKey];
+
+            if (outgoingViewNode === incomingViewNode) return;
+
+            gsap.to(outgoingViewNode, {
+                opacity: 0, y: 30, scale: 0.97, duration: 0.3, ease: 'power2.in',
+                onComplete: () => {
+                    outgoingViewNode.classList.remove('active-page-view');
+                    incomingViewNode.classList.add('active-page-view');
+
+                    gsap.fromTo(incomingViewNode, 
+                        { opacity: 0, y: -30, scale: 0.97 },
+                        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out' }
+                    );
+
+                    // Stagger secondary internal elements
+                    const interactiveInnerElements = incomingViewNode.querySelectorAll('.monolith-card, .matrix-shell-container, .lyric-paragraph-block');
+                    if (interactiveInnerElements.length > 0) {
+                        gsap.fromTo(interactiveInnerElements, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: 'power2.out', delay: 0.1 });
+                    }
+                    
+                    // Specific trigger for skill bars
+                    if (targetViewKey === 'matrix') {
+                        const skillFills = incomingViewNode.querySelectorAll('.skill-fill');
+                        gsap.fromTo(skillFills, { width: '0%' }, { width: (index, target) => target.style.width, duration: 1.5, ease: 'power4.out', delay: 0.3, stagger: 0.2 });
+                    }
+                }
+            });
+
+            interactionAnchorPills.forEach(anchorPill => {
+                if (anchorPill.getAttribute('data-target') === targetViewKey) anchorPill.classList.add('active');
+                else anchorPill.classList.remove('active');
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        interactionAnchorPills.forEach(anchor => anchor.addEventListener('click', () => processViewSwitchState(anchor.getAttribute('data-target'))));
+        document.getElementById('jumpToDeploymentsBtn')?.addEventListener('click', () => processViewSwitchState('deployments'));
+
+        // Deep Command Shell Interpreter Array
+        const interactiveConsoleInput = document.getElementById('shellInputNode');
+        const consoleLoggingViewArea = document.getElementById('shellBodyArea');
+
+        function appendConsoleOutputLine(stringToPrint, appendPromptSymbol = false, customColor = null) {
+            const dynamicLineContainer = document.createElement('div');
+            dynamicLineContainer.className = 'shell-io-line';
+            if(customColor) dynamicLineContainer.style.color = customColor;
+            
+            if (appendPromptSymbol) dynamicLineContainer.innerHTML = `<span class="shell-prompt-symbol">gatesi-core:~$</span> ${stringToPrint}`;
+            else dynamicLineContainer.innerText = stringToPrint;
+            
+            consoleLoggingViewArea.insertBefore(dynamicLineContainer, consoleLoggingViewArea.lastElementChild);
+            consoleLoggingViewArea.scrollTop = consoleLoggingViewArea.scrollHeight;
+        }
+
+        function decipherCommandExecution(rawStringCommand) {
+            const scrubbedLowerString = rawStringCommand.trim().toLowerCase();
+            switch(scrubbedLowerString) {
+                case 'help':
+                    appendConsoleOutputLine('AVAILABLE KERNEL COMMANDS:', false, '#e6b860');
+                    appendConsoleOutputLine('  whoami    - Decrypt biological and architectural identity');
+                    appendConsoleOutputLine('  vision    - Output philosophical manifesto parameters');
+                    appendConsoleOutputLine('  stack     - Dump primary algorithmic frameworks');
+                    appendConsoleOutputLine('  clear     - Flush terminal buffer completely');
+                    break;
+                case 'whoami':
+                    appendConsoleOutputLine('ACCESS GRANTED: Profile -> Divin Gatesi.');
+                    appendConsoleOutputLine('LOC: Kigali, Rwanda (1.9441° S, 30.0619° E).');
+                    appendConsoleOutputLine('ROLE: Front-End Synthesizer & Architect of the Digital Symphony.');
+                    break;
+                case 'vision':
+                    appendConsoleOutputLine('MANIFESTO EXTRACTED:', false, '#d4a373');
+                    appendConsoleOutputLine('  "The user interface is the final boundary between human chaos and machine order. My objective is to build bridges across this boundary that do not merely transmit data, but evoke an aesthetic and physical reaction through absolute, unyielding performance."');
+                    break;
+                case 'stack':
+                    appendConsoleOutputLine('COMPILING DEPENDENCY MATRICES...');
+                    appendConsoleOutputLine('[OK] Vue.js Composition API (Reactivity Trees)');
+                    appendConsoleOutputLine('[OK] TypeScript (Memory/Type Safety Protocols)');
+                    appendConsoleOutputLine('[OK] TailwindCSS (JIT Stylistic Compilation)');
+                    appendConsoleOutputLine('[OK] HTML5 Canvas (Hardware-accelerated Vector Drawing)');
+                    break;
+                case 'clear':
+                    while (consoleLoggingViewArea.children.length > 2) {
+                        consoleLoggingViewArea.removeChild(consoleLoggingViewArea.children[0]);
+                    }
+                    appendConsoleOutputLine('System memory arrays flushed. Awaiting input.');
+                    break;
+                default:
+                    if(scrubbedLowerString !== '') appendConsoleOutputLine(`EXECUTION FAULT: The parameter string "${rawStringCommand}" does not correspond to any valid system alias. Type 'help' to recover.`, false, '#ff5f56');
+            }
+        }
+
+        interactiveConsoleInput?.addEventListener('keypress', (keyEvent) => {
+            if (keyEvent.key === 'Enter') {
+                const standardInputValue = interactiveConsoleInput.value;
+                appendConsoleOutputLine(standardInputValue, true);
+                decipherCommandExecution(standardInputValue);
+                interactiveConsoleInput.value = '';
+            }
+        });
+
+        // Cryptographic Routing ID Transfer
+        document.getElementById('copyRoutingTokenBtn')?.addEventListener('click', () => {
+            navigator.clipboard.writeText('gatesidivin8@gmail.com');
+            const temporaryButtonInstance = document.getElementById('copyRoutingTokenBtn');
+            temporaryButtonInstance.innerHTML = '<i class="fa-solid fa-satellite-dish"></i> Uplink Established - Email Copied!';
+            temporaryButtonInstance.style.background = 'linear-gradient(135deg, #10b981, #065f46)';
+            setTimeout(() => {
+                temporaryButtonInstance.innerHTML = '<i class="fa-solid fa-fingerprint"></i> Capture Cryptographic Routing ID';
+                temporaryButtonInstance.style.background = '';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
